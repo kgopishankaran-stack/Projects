@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>order-page</title>
+     <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-dark text-white">
+  <hr style="color:blue">
+  <h1 class="fw-bold text-center text-white">Details</h1>
+  <hr style="color:blue">
+  <form>
+    <div class="d-flex">
+    <label for="username" class="form-label mt-5 ms-4">NAME: </label>
+    <input type="text" class="form-control w-50 mt-5 ms-2" id="username" placeholder="name">
+    <span id="nameErr" style="color:red;"class="form-label mt-5 ms-4"></span>
+    </div>
+     <div class="d-flex">
+    <label for="mailid" class="form-label mt-5 ms-4">E-MAIL: </label>
+    <input type="email" class="form-control w-50 mt-5 ms-2" id="mailid" placeholder="mailid">
+    <span id="mailErr" style="color:red;"class="form-label mt-5 ms-4"></span>
+    </div>
+     <div class="d-flex">
+    <label for="phonenum" class="form-label mt-5 ms-4">MOBILE: </label>
+    <input type="number" class="form-control w-50 mt-5 ms-2" id="phonenum"placeholder="number">
+    <span id="numErr" style="color:red;"class="form-label mt-5 ms-4"></span>
+    </div>
+     <div class="d-flex">
+    <label for="address" class="form-label mt-5 ms-4">ADDRESS: </label>
+     <textarea name="" id="address" class="form-control w-50 mt-5 ms-2"></textarea>
+     <span id="addressErr" style="color:red;"class="form-label mt-5 ms-4"></span>
+    </div>
+    <div class="d-flex">
+   <label for="order" class="form-label ms-4 mt-5">ORDERED STATUE NAME:</label>
+   <!-- <input type="text" class="form-control w-50 mt-5 ms-2" id="order" placeholder="statue name"> -->
+   <!-- <span id="orderErr" style="color:red;"class="form-label mt-5 ms-4"></span> -->
+    <select name="orderlist" class="btn btn-outline-light ms-5 mt-5" id="order">
+    <option value="amman">Amman</option>
+    <option value="bhutthar">bhutthar</option>
+    <option value="Gajalakshmi">Gajalakshmi</option>
+    <option value="Hanuman">Hanuman</option>
+    <option value="Kalabairavar">Kalabairavar</option>
+    <option value="Nagam">Nagam</option>
+    <option value="Nandhi">Nandhi</option>
+    <option value="Ramanujar">Ramanujar</option>
+    <option value="Sivalingam">Sivalingam</option>
+    <option value="Veeran">Veeran</option>
+    <option value="vinayagar">vinayagar</option>
+   </select>
+   </div>
+   <div class="d-flex">
+    <label for="description" class="form-label ms-4 mt-5">DESCRIPTION:</label>
+    <textarea name="" id="description" class="form-control ms-2 mt-5 w-50"placeholder="mention size , posture etc."></textarea>
+    <span id="descriptionErr" style="color:red;"class="form-label mt-5 ms-4"></span>
+   </div>
+        <div class="d-flex">
+          <div class="form-check-inline mt-4 ms-4">
+        <label for="radio" class="">PAYMENT-METHOD: </label>
+        </div>
+        <div class="d-flex form-check-inline ms-5 mt-4"> 
+        <input type="radio" class=" form-check-inline " name="rad1" id="pay1" checked>
+        <label for="radio" class="form-check-label ms-3">phonepay or g-pay</label>
+    </div>
+     <div class="form-check-inline ms-5 mt-4">
+        <input type="radio" class="form-check-inline" name="rad1" id="pay2" onclick="radio()">
+        <label for="radio" class="form-check-label">offline payment</label>
+    </div>
+   </div>
+   </div>
+   <div id="hide">
+   <label for="filechosse" class="form-control mt-5 text-center text-light bg-dark">Upload Amount Paid Screenshot Here In Case of Online Payment</label>
+   <input type="file" class="form-control w-50" id="filechoose">
+   <span id="paymentErr" style="color:red;"class="form-label mt-5 ms-4"></span>
+   </div>
+  </form>
+  <div class="text-center">
+  <button id="submit" class="btn btn-success mt-4 " onclick="check()">submit</button>
+  </div>
+  <a href="bootstrap-project.html" class="btn btn-primary mt-5 ms-5">Back</a>
+  <footer class="mt-5 card">
+    <p class="h1  text-center">THANKYOU FOR ORDERING!!!</p>
+    <p class="display-6 text-center">contact us to know the progress</p>
+  </footer>  
+</body>
+<script>
+  let name=document.getElementById("username");
+  let mail=document.getElementById("mailid");
+  let mobile=document.getElementById("phonenum");
+  let addrs=document.getElementById("address");
+  //let orderName=document.getElementById("order");
+  let desc=document.getElementById("description");
+  const rad=document.getElementById("pay2");
+  let file=document.getElementById("hide");
+  function check()
+  {
+    let valid=true;
+    let Name=name.value.trim();
+    let nameErr=document.getElementById("nameErr");
+    if(Name==="")                                      //username check
+  {
+    nameErr.innerText="name is required";
+    valid=false;
+  }
+   let Mail=mail.value.trim();
+    let mailErr=document.getElementById("mailErr");
+    if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(Mail))                                       //mailid check
+  {
+    mailErr.innerText="mail is required";
+    valid=false;
+  }
+   let Mobile=mobile.value.trim();
+    let numErr=document.getElementById("numErr");
+    if(Mobile<1000000000 || mobile>9999999999)                                      //phonenum check
+  {
+    numErr.innerText="number is invalid";
+    valid=false;
+  }
+   let Addrs=addrs.value.trim();
+    let addressErr=document.getElementById("addressErr");
+    if(Addrs==="")                                        //address check
+  {
+    addressErr.innerText="address is required";
+    valid=false;
+  }
+   //let OrderName=orderName.value.trim();
+    //let orderErr=document.getElementById("orderErr"); // order check
+   // if(OrderName==="")
+  //{
+   // orderErr.innerText="order is required";
+  //  valid=false;
+  //}
+   let Desc=desc.value.trim();
+    let descErr=document.getElementById("descriptionErr");
+    if(Desc==="")                                          //description checking
+  {
+    descErr.innerText="description is required";
+    valid=false;
+  }
+    let fileErr=document.getElementById("fileErr"); 
+    if(file==="true")                               //file uploaded or not
+  {
+    orderErr.innerText="file is required";
+    valid=false;
+  }
+  if(!valid){
+  event.preventDefault();
+  }
+  else
+  {
+
+  alert("successfully submitted");
+  }
+  }
+function radio()
+{
+   if(rad) //rad is offline payment
+   {
+     file.style.display="none";   //file is file showing div
+   }
+  
+}
+</script>
+<script href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</html>
